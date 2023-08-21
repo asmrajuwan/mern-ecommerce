@@ -1,7 +1,19 @@
 import React, { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { NavLink } from 'react-router-dom';
+import { useAuth } from '../../context/auth';
 
 const Navbar = () => {
+    const [auth,setAuth] =useAuth();
+
+    const handleLogout = ()=>{
+        setAuth({
+            ...auth,user:null,token:''
+        })
+        localStorage.removeItem('auth')
+        toast.success('loggedout successfully')
+    }
+
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -28,7 +40,8 @@ const Navbar = () => {
                                 Category
                             </NavLink>
                         </li>
-                        <li>
+                         {
+                          !auth.user ? (<>  <li>
                             <NavLink to="/register" className="text-white hover:text-gray-300">
                                 Register
                             </NavLink>
@@ -38,6 +51,13 @@ const Navbar = () => {
                                 Login
                             </NavLink>
                         </li>
+                          </>) :(<>
+                            <li>
+                            <NavLink onClick={handleLogout} to="/login" className="text-white hover:text-gray-300">
+                                Logout
+                            </NavLink>
+                        </li></>)
+                         }
                         <li>
                             <NavLink to="/cart" className="text-white hover:text-gray-300">
                                 Cart(0)

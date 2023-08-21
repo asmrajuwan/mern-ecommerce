@@ -1,13 +1,18 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Layout from '../../components/Layout/Layout';
+import { useAuth } from '../../context/auth';
+
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [auth,setAuth] =useAuth()
+    
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,9 +21,15 @@ const Login = () => {
                 `${process.env.REACT_APP_API}/api/v1/auth/login`,
                 { email, password }
             );
-            if (res.data.success) {
+            
+            if (res && res.data.success) {
                 toast.success(res && res.data.message);
-                navigate('/');
+                setAuth({...auth,
+                         user:res.data.user,
+                         token:res.data.token   
+                });
+                localStorage.setItem('auth',JSON.stringify(res.data))
+                navigate(location.state || "/");
             } else {
                 toast.error(res.data.message);
             }
@@ -78,7 +89,7 @@ const Login = () => {
                             type="submit"
                             className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 w-full"
                         >
-                            Log In
+                            LogIn
                         </button>
                     </form>
                 </div>
