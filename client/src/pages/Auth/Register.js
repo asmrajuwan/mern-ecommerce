@@ -10,6 +10,7 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
+    const [answer, setAnswer] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -17,7 +18,7 @@ const Register = () => {
         try {
             const res = await axios.post(
                 `${process.env.REACT_APP_API}/api/v1/auth/register`,
-                { name, email, password, phone, address }
+                { name, email, password, phone, address,answer }
             );
             if (res.data.success) {
                 toast.success(res && res.data.message);
@@ -38,12 +39,12 @@ const Register = () => {
                 className="h-screen flex justify-center items-center"
             >
               <div className="container mx-auto px-4 py-10">
-                <div className="text-center mb-8">
+                {/* <div className="text-center mb-8">
                     <h1 className="text-4xl font-semibold text-white">Register</h1>
                     <p className="text-lg text-yellow-50">
                         Create an account to get started.
                     </p>
-                </div>
+                </div> */}
                 <div className="max-w-md w-full mx-auto bg-gray-100 p-6 rounded-lg shadow-md">
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
@@ -113,6 +114,20 @@ const Register = () => {
                                 id="address"
                                 className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
                                 placeholder="Your Address"
+                                required
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="answer" className="block text-gray-700 text-sm font-semibold mb-1">
+                                Answer
+                            </label>
+                            <input
+                                type="text"
+                                value={answer}
+                                onChange={(e) => setAnswer(e.target.value)}
+                                id="answer"
+                                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
+                                placeholder="What is your favourite game?"
                                 required
                             />
                         </div>
