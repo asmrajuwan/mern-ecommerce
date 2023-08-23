@@ -59,6 +59,31 @@ const CreateProduct = () => {
                                     setCategory(selectedOption.value);
                                 }}
                             />
+                            <div className="mb-3">
+  <label className="border border-gray-300 rounded-md p-2 w-full text-center cursor-pointer hover:bg-gray-100 ml-4">
+    {photo ? photo.name : "Upload Photo"}
+    <input
+      type="file"
+      name="photo"
+      accept="image/*"
+      onChange={(e) => setPhoto(e.target.files[0])}
+      className="hidden"
+    />
+  </label>
+</div>
+<div className="mb-3">
+  {photo && (
+    <div className="text-center ml-4">
+      <img
+        src={URL.createObjectURL(photo)}
+        alt="product_photo"
+        height={"200px"}
+        className="block mx-auto"
+      />
+    </div>
+  )}
+</div>
+
                         </div>
                         
                     </div>
