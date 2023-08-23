@@ -55,4 +55,63 @@ export const updateCategoryController =async (req,res)=>{
         })
     }
     
+};
+
+export const getCategories = async(req,res)=>{
+try {
+    const categories = await categoryModel.find({})
+    res.status(200).send({
+        success:true,
+        message:"All categories list",
+        categories
+    })
+} catch (error) {
+    
+    console.log(error)
+    res.status(500).send({
+        success: false,
+        error,
+        message:'Error while getting all category'
+    })
+}
+};
+
+export const getCategoryBySlug = async(req,res) =>{
+    try {
+        
+        const category = await categoryModel.findOne({slug:req.params.slug})
+        res.status(200).send({
+            success:true,
+            message:"Get Single category",
+            category
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success: false,
+            error,
+            message:'Error while getting a category'
+        })
+    }
+};
+
+export const deleteCategoryById = async (req,res)=>{
+    try {
+        const {id} = req.params;
+        await categoryModel.findByIdAndDelete(id)
+        res.status(200).send({
+            success:true,
+            message:"Deleted Single category",
+            
+        })
+        
+    } catch (error) {
+        onsole.log(error)
+        res.status(500).send({
+            success: false,
+           
+            message:'Error while deleting a category',
+            error,
+        })
+    }
 }
