@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/auth";
+import SearchInput from "../Form/SearchInput";
 
 const Navbar = () => {
     const [auth, setAuth] = useAuth();
@@ -32,6 +33,7 @@ const Navbar = () => {
                 </div>
                 <div className={`md:flex ${isOpen ? "block" : "hidden"}`}>
                     <ul className="md:flex space-y-2 md:space-y-0 md:space-x-4">
+                        <SearchInput/>
                         <li>
                             <NavLink
                                 to="/"
