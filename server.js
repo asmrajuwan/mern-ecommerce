@@ -7,7 +7,10 @@ import authRoute from "./routes/authRoute.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 
-dotenv.config()
+
+dotenv.config();
+
+
 
 connectDB();
 

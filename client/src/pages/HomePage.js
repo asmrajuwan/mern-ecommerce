@@ -1,10 +1,16 @@
 import { Checkbox, Radio } from "antd";
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import Layout from "../components/Layout/Layout";
 import { Prices } from "../components/Prices";
+import { useCart } from "../context/cart";
 
 const HomePage = () => {
+    const navigate = useNavigate();
+    const [cart, setCart] = useCart();
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [checked, setChecked] = useState([]);
@@ -40,7 +46,7 @@ const HomePage = () => {
             setLoading(false);
             setProducts(data.products);
         } catch (error) {
-            setLoading(false)
+            setLoading(false);
             console.log(error);
         }
     };
@@ -153,7 +159,6 @@ const HomePage = () => {
                    
                 </div>  */}
                 <div className="w-3/4">
-                   
                     <h4 className=" text-center text-4xl mr-15 text font-bold ">
                         All Products
                     </h4>
@@ -178,10 +183,24 @@ const HomePage = () => {
                                         {" "}
                                         $ {p.price}
                                     </p>
-                                    <button className="btn btn-primary">
+                                    <button
+                                        className="btn btn-primary"
+                                        onClick={() =>
+                                            navigate(`/product/${p.slug}`)
+                                        }
+                                    >
                                         More Details
                                     </button>
-                                    <button className="btn btn-secondary">
+                                    <button
+                                         onClick={() => {
+                                            setCart([...cart, p]);
+                                            localStorage.setItem(
+                                              "cart",
+                                              JSON.stringify([...cart, p])
+                                            );
+                                            toast.success("Item Added to cart");
+                                          }}
+                                    >
                                         Add to Cart
                                     </button>
                                 </div>
