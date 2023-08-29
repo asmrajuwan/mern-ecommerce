@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Layout from '../../components/Layout/Layout';
 import { useAuth } from '../../context/auth';
 
@@ -9,7 +9,7 @@ import { useAuth } from '../../context/auth';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [auth,setAuth] =useAuth()
+    const [auth,setAuth,googleLogin] =useAuth()
     
     const navigate = useNavigate();
     const location = useLocation();
@@ -39,22 +39,33 @@ const Login = () => {
         }
     };
 
+    // const handleGoogleLogIn= () =>{
+    //     googleLogin()
+    //         .then(result =>{
+    //             const user = result.user;
+    //             console.log(user);
+    //         })
+    //         .catch(err => console.error(err))
+    // }
+
+
+    
     return (
         <Layout>
             <div
-                style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)' }}
-                className="h-screen flex justify-center items-center"
+                
+                className="bg-gray-600 h-screen flex justify-center items-center"
             >
-                <div className="max-w-md w-full mx-auto bg-gray-100 p-6 rounded-lg shadow-md">
-                    <h1 className="text-2xl font-semibold mb-4">Log In</h1>
-                    <p className="text-gray-600 mb-8">
+                <div className="bg-gray-400 max-w-md w-full mx-auto p-6 rounded-none shadow-lg">
+                    <h1 className="text-2xl font-semibold mb-4 text-center">Log In</h1>
+                    <p className="text-black mb-8">
                         Log in to your account to continue.
                     </p>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label
                                 htmlFor="email"
-                                className="block text-gray-700 text-sm font-semibold mb-1"
+                                className="block text-black text-sm font-semibold mb-1"
                             >
                                 Email
                             </label>
@@ -63,7 +74,7 @@ const Login = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 id="email"
-                                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
+                                className="w-full  bg-slate-50 rounded-md px-3 py-2 text-sm"
                                 placeholder="Your Email"
                                 required
                             />
@@ -71,7 +82,7 @@ const Login = () => {
                         <div className="mb-4">
                             <label
                                 htmlFor="password"
-                                className="block text-gray-700 text-sm font-semibold mb-1"
+                                className="block text-black text-sm font-semibold mb-1"
                             >
                                 Password
                             </label>
@@ -80,27 +91,37 @@ const Login = () => {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 id="password"
-                                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
+                                className="w-full  bg-slate-50 rounded-md px-3 py-2 text-sm"
                                 placeholder="Your Password"
                                 required
                             />
                         </div>
-                        <div className='mb-3'>
-                        <button
-                            type="button"
-                            onClick={()=>{navigate('/forgot-password')}}
-                            className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 w-full"
-                        >
-                           Forgot Password
-                        </button>
+                        <div className="mb-4">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    navigate('/forgot-password');
+                                }}
+                                className="text-blue-900 hover:underline text-sm focus:outline-none"
+                            >
+                                Forgot Password?
+                            </button>
                         </div>
                         <button
                             type="submit"
-                            className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 w-full"
+                            className="bg-slate-700 text-white px-4 py-2 rounded-md text-sm hover:bg-slate-800 w-full"
                         >
                             LogIn
                         </button>
                     </form>
+                    <p className='ml-8 mb-5 text-black'>New to Bazar Shodai? Please <Link to='/register' className='hover:underline text-xl font-bold hover:text-slate-800 text-slate-700'>Register</Link> </p>
+                    {/* <button
+                            onClick={handleGoogleLogIn}
+                           
+                            className="bg-slate-700 text-white px-4 py-2 rounded-md text-sm hover:bg-slate-800 w-full"
+                        >
+                            LogIn with google
+                        </button> */}
                 </div>
             </div>
         </Layout>

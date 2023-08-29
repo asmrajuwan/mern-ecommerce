@@ -3,7 +3,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSearch } from "../../context/search";
 
-
 const SearchInput = () => {
     const [values, setValues] = useSearch();
     const navigate = useNavigate();
@@ -22,18 +21,20 @@ const SearchInput = () => {
     };
 
     return (
-        <div>
+        <div className="join">
             <form onSubmit={handleSubmit} className="flex" role="search">
                 <input
-                    className="w-full py-2 px-3 border border-gray-300 rounded-l focus:outline-none"
+                    className="w-auto  text-white py-1 px-4  bg-stone-600 border-gray-300 rounded-none focus:outline-none"
                     type="search"
                     placeholder="Search"
                     aria-label="Search"
                     value={values.keyword}
-                    onChange={(e) => setValues({ ...values, keyword: e.target.value })}
+                    onChange={(e) =>
+                        setValues({ ...values, keyword: e.target.value })
+                    }
                 />
                 <button
-                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-r focus:outline-none"
+                    className="bg-slate-400 hover:bg-slate-700 text-white py-1 px-6 rounded-none focus:outline-none"
                     type="submit"
                 >
                     Search

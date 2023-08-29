@@ -16,7 +16,7 @@ const Products = () => {
             setProducts(data.products);
         } catch (error) {
             console.log(error);
-            toast.error("something went wrong");
+            toast.error("Something went wrong");
         }
     };
 
@@ -31,15 +31,14 @@ const Products = () => {
                     <AdminMenu />
                 </div>
                 <div className="col-span-9">
-                    <h1 className="text-center text-2xl font-bold">
-                        All products List
+                    <h1 className="text-center text-2xl font-bold mb-4">
+                        All Products List
                     </h1>
-                    <div className="d-flex">
+                    <div className="flex flex-wrap">
                         {products?.map((p) => (
                             <div
                                 key={p._id}
-                                className="card m-2"
-                                style={{ width: "18rem" }}
+                                className="card m-2 w-64"
                             >
                                 <Link to={`/dashboard/admin/product/${p.slug}`}>
                                     <img

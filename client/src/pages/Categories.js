@@ -8,12 +8,16 @@ const Categories = () => {
 
     return (
         <Layout>
-            <div className="container">
-                <div className="row">
+            <div className="container mx-auto">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {categories.map((c) => (
-                        <div className="col-md-6 mt-5 mb-3 gx-3 gy-3" key={c._id}>
-                                <Link className="btn btn-primary" to={`/categories/${c.slug}`}>{c.name}</Link>
-                            
+                        <div className="p-3 rounded-lg shadow-md bg-white" key={c._id}>
+                            <Link
+                                className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm block text-center hover:bg-blue-700"
+                                to={`/categories/${c.slug}`}
+                            >
+                                {c.name}
+                            </Link>
                         </div>
                     ))}
                 </div>

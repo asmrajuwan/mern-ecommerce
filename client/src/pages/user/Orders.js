@@ -6,82 +6,82 @@ import { useAuth } from "../../context/auth";
 import Layout from "./../../components/Layout/Layout";
 
 const Orders = () => {
-  const [orders, setOrders] = useState([]);
-  const [auth, setAuth] = useAuth();
-  const getOrders = async () => {
-    try {
-      const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/auth/orders`);
-      setOrders(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    const [orders, setOrders] = useState([]);
+    const [auth, setAuth] = useAuth();
 
-  useEffect(() => {
-    if (auth?.token) getOrders();
-  }, [auth?.token]);
-  return (
-    <Layout title={"Your Orders"}>
-      <div className="container-flui p-3 m-3 dashboard">
-        <div className="row">
-          <div className="col-md-3">
-            <UserMenu />
-          </div>
-          <div className="col-md-9">
-            <h1 className="text-center">All Orders</h1>
-            {orders?.map((o, i) => {
-              return (
-                <div className="border shadow">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Buyer</th>
-                        <th scope="col"> date</th>
-                        <th scope="col">Payment</th>
-                        <th scope="col">Quantity</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{i + 1}</td>
-                        <td>{o?.status}</td>
-                        <td>{o?.buyer?.name}</td>
-                        <td>{moment(o?.createAt).fromNow()}</td>
-                        <td>{o?.payment.success ? "Success" : "Failed"}</td>
-                        <td>{o?.products?.length}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div className="container">
-                    {o?.products?.map((p, i) => (
-                      <div className="row mb-2 p-3 card flex-row" key={p._id}>
-                        <div className="col-md-4">
-                          <img
-                            src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
-                            className="card-img-top"
-                            alt={p.name}
-                            width="100px"
-                            height={"100px"}
-                          />
-                        </div>
-                        <div className="col-md-8">
-                          <p>{p.name}</p>
-                          <p>{p.description.substring(0, 30)}</p>
-                          <p>Price : {p.price}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+    const getOrders = async () => {
+        try {
+            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/auth/orders`);
+            setOrders(data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        if (auth?.token) {
+            getOrders();
+        }
+    }, [auth?.token]);
+
+    return (
+        <Layout title={"Your Orders"}>
+            <div className="container-flui p-3 m-3">
+                <div className="flex">
+                    <div className="w-1/4">
+                        <UserMenu />
+                    </div>
+                    <div className="w-3/4">
+                        <h1 className="text-center text-2xl font-bold mb-4">All Orders</h1>
+                        {orders?.map((o, i) => (
+                            <div className="border shadow p-3 mb-4" key={o._id}>
+                                <table className="w-full table-auto">
+                                    <thead>
+                                        <tr>
+                                            <th className="px-4 py-2">#</th>
+                                            <th className="px-4 py-2">Status</th>
+                                            <th className="px-4 py-2">Buyer</th>
+                                            <th className="px-4 py-2">Date</th>
+                                            <th className="px-4 py-2">Payment</th>
+                                            <th className="px-4 py-2">Quantity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td className="px-4 py-2">{i + 1}</td>
+                                            <td className="px-4 py-2">{o?.status}</td>
+                                            <td className="px-4 py-2">{o?.buyer?.name}</td>
+                                            <td className="px-4 py-2">{moment(o?.createAt).fromNow()}</td>
+                                            <td className="px-4 py-2">{o?.payment.success ? "Success" : "Failed"}</td>
+                                            <td className="px-4 py-2">{o?.products?.length}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div className="grid gap-4 mt-4">
+                                    {o?.products?.map((p) => (
+                                        <div className="grid grid-cols-2 gap-4 p-3 border rounded-md shadow-md" key={p._id}>
+                                            <div>
+                                                <img
+                                                    src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
+                                                    className="object-contain w-full h-24"
+                                                    alt={p.name}
+                                                />
+                                            </div>
+                                            <div>
+                                                <p className="font-semibold">{p.name}</p>
+                                                <p>{p.description.substring(0, 30)}</p>
+                                                <p>Price: {p.price}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </Layout>
-  );
+            </div>
+        </Layout>
+    );
 };
 
 export default Orders;

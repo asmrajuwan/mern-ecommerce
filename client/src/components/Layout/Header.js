@@ -28,7 +28,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-gray-900">
+        <nav className="bg-gray-800">
             <div className="container mx-auto py-4 px-4 flex justify-between items-center">
                 <div className="flex items-center">
                     <NavLink to="/" className="text-white text-2xl font-bold">
@@ -128,7 +128,7 @@ const Navbar = () => {
                                             />
                                         </svg>
                                     </NavLink>
-                                    <ul className=" absolute hidden mt-2 space-y-1 bg-white border border-gray-300 rounded shadow-lg min-w-max group-hover:block">
+                                    <ul className=" absolute hidden  mb-3   bg-white border border-gray-300 rounded shadow-lg min-w-max group-hover:block">
                                         <li>
                                             <NavLink
                                                 to={`/dashboard/${

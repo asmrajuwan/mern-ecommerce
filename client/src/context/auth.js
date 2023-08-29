@@ -1,12 +1,20 @@
 import axios from "axios";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 
-const AuthContext = createContext();
+const provider = new GoogleAuthProvider();
+
+export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     user: null,
     token: "",
   });
+
+  const googleLogin = ()=>{
+   
+    return signInWithPopup(auth, provider )
+}
 
   //default axios
   axios.defaults.headers.common["Authorization"] = auth?.token
@@ -23,8 +31,12 @@ const AuthProvider = ({ children }) => {
     }
     //eslint-disable-next-line
   }, []);
+
+ 
+
   return (
-    <AuthContext.Provider value={[auth, setAuth]}>
+    <AuthContext.Provider value={
+      [auth, setAuth]}>
       {children}
     </AuthContext.Provider>
   );

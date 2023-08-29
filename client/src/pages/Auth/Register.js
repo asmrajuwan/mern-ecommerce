@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from "react";
 import toast from 'react-hot-toast';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 
 const Register = () => {
@@ -35,20 +35,18 @@ const Register = () => {
     return (
         <Layout>
             <div
-                style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)' }}
-                className="h-screen flex justify-center items-center"
+                
+                className="bg-gray-600 flex justify-center items-center"
             >
               <div className="container mx-auto px-4 py-10">
-                {/* <div className="text-center mb-8">
-                    <h1 className="text-4xl font-semibold text-white">Register</h1>
-                    <p className="text-lg text-yellow-50">
-                        Create an account to get started.
-                    </p>
-                </div> */}
-                <div className="max-w-md w-full mx-auto bg-gray-100 p-6 rounded-lg shadow-md">
+
+              <h1 className="text-2xl font-bold text-gray-200 mb-4 text-center">REGISTER</h1>
+
+             
+                <div className="bg-gray-400 max-w-md w-full mx-auto p-6 rounded-none shadow-md">
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
-                            <label htmlFor="username" className="block text-gray-700 text-sm font-semibold mb-1">
+                            <label htmlFor="username" className="block  text-gray-700 text-sm font-semibold mb-1">
                                 Name
                             </label>
                             <input
@@ -56,7 +54,7 @@ const Register = () => {
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 id="username"
-                                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
+                                className="w-full border bg-slate-50 border-gray-300 rounded-md px-3 py-2 text-sm"
                                 placeholder="Your Name"
                                 required
                             />
@@ -70,7 +68,7 @@ const Register = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 id="email"
-                                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
+                                className="w-full border bg-slate-50 border-gray-300 rounded-md px-3 py-2 text-sm"
                                 placeholder="Your Email"
                                 required
                             />
@@ -81,10 +79,11 @@ const Register = () => {
                             </label>
                             <input
                                 type="password"
+
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 id="password"
-                                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
+                                className="w-full border bg-slate-50 border-gray-300 rounded-md px-3 py-2 text-sm"
                                 placeholder="Your Password"
                                 required
                             />
@@ -98,13 +97,13 @@ const Register = () => {
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}
                                 id="phone"
-                                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
+                                className="w-full border bg-slate-50 border-gray-300 rounded-md px-3 py-2 text-sm"
                                 placeholder="Your Phone"
                                 required
                             />
                         </div>
                         <div className="mb-4">
-                            <label htmlFor="address" className="block text-gray-700 text-sm font-semibold mb-1">
+                            <label htmlFor="address" className="block  text-gray-700 text-sm font-semibold mb-1">
                                 Address
                             </label>
                             <input
@@ -112,7 +111,7 @@ const Register = () => {
                                 value={address}
                                 onChange={(e) => setAddress(e.target.value)}
                                 id="address"
-                                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
+                                className="w-full bg-slate-50 border border-gray-300 rounded-md px-3 py-2 text-sm"
                                 placeholder="Your Address"
                                 required
                             />
@@ -126,18 +125,20 @@ const Register = () => {
                                 value={answer}
                                 onChange={(e) => setAnswer(e.target.value)}
                                 id="answer"
-                                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
+                                className="w-full border bg-slate-50 border-gray-300 rounded-md px-3 py-2 text-sm"
                                 placeholder="What is your favourite game?"
                                 required
                             />
                         </div>
                         <button
                             type="submit"
-                            className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 w-full"
+                            className="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-md text-sm  w-full"
                         >
                             Register
                         </button>
                     </form>
+                    <p className='ml-8 mb-5 text-black'>All Ready Have an Account? Please <Link to='/login' className='hover:underline text-xl font-bold hover:text-slate-800 text-slate-700'>Login</Link> </p>
+
                 </div>
             </div>
             </div>

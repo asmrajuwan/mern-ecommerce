@@ -7,7 +7,7 @@ import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 
 const AdminOrders = () => {
-  const [status,setStatus] = useState([
+  const [status, setStatus] = useState([
     "Not Process",
     "Processing",
     "Shipped",
@@ -48,29 +48,29 @@ const AdminOrders = () => {
 
   return (
     <Layout title={"All Orders Data"}>
-      <div className="row dashboard">
-        <div className="col-md-3">
+      <div className="flex flex-row">
+        <div className="w-1/4">
           <AdminMenu />
         </div>
-        <div className="col-md-9">
-          <h1 className="text-center">All Orders</h1>
+        <div className="w-3/4 p-4">
+          <h1 className="text-center text-3xl font-semibold mb-4">All Orders</h1>
           {orders?.map((o, i) => (
-            <div className="border shadow" key={o._id}>
-              <table className="table">
+            <div className="border shadow rounded-lg p-4 mb-4" key={o._id}>
+              <table className="w-full table-auto">
                 <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Buyer</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Payment</th>
-                    <th scope="col">Quantity</th>
+                  <tr className="text-left">
+                    <th className="py-2">#</th>
+                    <th className="py-2">Status</th>
+                    <th className="py-2">Buyer</th>
+                    <th className="py-2">Date</th>
+                    <th className="py-2">Payment</th>
+                    <th className="py-2">Quantity</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>{i + 1}</td>
-                    <td>
+                  <tr className="text-left">
+                    <td className="py-2">{i + 1}</td>
+                    <td className="py-2">
                       <Select
                         options={status.map((s) => ({
                           value: s,
@@ -80,31 +80,30 @@ const AdminOrders = () => {
                           handleChange(o._id, selectedOption.value)
                         }
                         defaultValue={{ value: o?.status, label: o?.status }}
+                        className="w-32"
                       />
                     </td>
-                    <td>{o?.buyer?.name}</td>
-                    <td>{moment(o?.createAt).fromNow()}</td>
-                    <td>{o?.payment.success ? "Success" : "Failed"}</td>
-                    <td>{o?.products?.length}</td>
+                    <td className="py-2">{o?.buyer?.name}</td>
+                    <td className="py-2">{moment(o?.createAt).fromNow()}</td>
+                    <td className="py-2">{o?.payment.success ? "Success" : "Failed"}</td>
+                    <td className="py-2">{o?.products?.length}</td>
                   </tr>
                 </tbody>
               </table>
-              <div className="container">
+              <div className="mt-4">
                 {o?.products?.map((p, index) => (
-                  <div className="row mb-2 p-3 card flex-row" key={p._id}>
-                    <div className="col-md-4">
+                  <div className="flex items-center p-4 border rounded-lg mb-2" key={p._id}>
+                    <div className="w-1/4">
                       <img
                         src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
-                        className="card-img-top"
+                        className="w-full h-auto"
                         alt={p.name}
-                        width="100px"
-                        height="100px"
                       />
                     </div>
-                    <div className="col-md-8">
-                      <p>{p.name}</p>
-                      <p>{p.description.substring(0, 30)}</p>
-                      <p>Price : {p.price}</p>
+                    <div className="w-3/4 pl-4">
+                      <p className="font-semibold">{p.name}</p>
+                      <p className="text-sm mb-1">{p.description.substring(0, 30)}</p>
+                      <p className="font-semibold">Price: {p.price}</p>
                     </div>
                   </div>
                 ))}

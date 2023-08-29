@@ -11,7 +11,7 @@ const UpdateProduct = () => {
     const params = useParams();
 
     const [categories, setCategories] = useState([]);
-    
+
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
@@ -32,7 +32,10 @@ const UpdateProduct = () => {
             setPrice(data.product.price);
             setQuantity(data.product.quantity);
             setShipping(data.product.shipping);
-            setCategory({ value: data.product.category._id, label: data.product.category.name });
+            setCategory({
+                value: data.product.category._id,
+                label: data.product.category.name,
+            });
         } catch (error) {
             console.log(error);
         }
@@ -72,12 +75,12 @@ const UpdateProduct = () => {
             photo && productData.append("photo", photo);
             productData.append("category", category.value);
             // ...other fields...
-            
+
             const { data } = await axios.put(
                 `${process.env.REACT_APP_API}/api/v1/product/update-product/${id}`,
                 productData
             );
-            
+
             if (data?.success) {
                 toast.success("Product Updated Successfully");
                 navigate("/dashboard/admin/products");
@@ -92,7 +95,9 @@ const UpdateProduct = () => {
 
     const handleDelete = async () => {
         try {
-            const confirmDelete = window.confirm("Are you sure you want to delete this product?");
+            const confirmDelete = window.confirm(
+                "Are you sure you want to delete this product?"
+            );
             if (confirmDelete) {
                 const { data } = await axios.delete(
                     `${process.env.REACT_APP_API}/api/v1/product/delete-product/${id}`
@@ -113,14 +118,14 @@ const UpdateProduct = () => {
 
     return (
         <Layout>
-            <div className="container-fluid m-3 p-3">
+            <div className="container mx-auto mt-6 p-6">
                 <div className="flex">
                     <div className="w-1/4">
                         <AdminMenu />
                     </div>
                     <div className="w-3/4">
                         <h3 className="text-2xl font-bold">Update Product</h3>
-                        <div className="m-1 w-3/4">
+                        <div className="mt-4">
                             <div className="mb-3">
                                 <label className="block mb-1 font-medium">
                                     Category
@@ -139,114 +144,115 @@ const UpdateProduct = () => {
                                     value={category}
                                 />
                             </div>
-                            </div>
-                             <div className="mb-3">
-                                 <label className="block mb-1 font-medium pb-2">
-                                     Upload Photo
-                                 </label>
-                                 <label className="border border-gray-300 rounded-md p-2 w-full text-center cursor-pointer hover:bg-gray-100">
-                                     {photo ? photo.name : "Upload Photo"}
-                                     <input
-                                         type="file"
-                                         name="photo"
-                                         accept="image/*"
-                                         onChange={(e) =>
-                                             setPhoto(e.target.files[0])
-                                         }
-                                         className="hidden"
-                                     />
-                                 </label>
-                             </div>
-                             <div className="mb-3">
-                                 {photo ? (
-                                     <div className="text-center">
-                                         <img
-                                             src={URL.createObjectURL(photo)}
-                                             alt="product_photo"
-                                             height="200px"
-                                             className="block mx-auto"
-                                         />
-                                     </div>
-                                 ): (
-                                    <div className="text-center">
-                                         <img
-                                             src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${id}`}
-                                             alt="product_photo"
-                                             height="200px"
-                                             className="block mx-auto"
-                                         />
-                                     </div>
-                                 )}
-                             </div>
-                             <div className="mb-3">
-                                 <label className="block mb-1 font-medium">
-                                     Name
-                                 </label>
-                                 <input
-                                     type="text"
-                                     value={name}
-                                     placeholder="write a name"
-                                     className="border rounded-md p-2 w-full"
-                                     onChange={(e) => setName(e.target.value)}
-                                 />
-                             </div>
-                             <div className="mb-3">
-                                 <label className="block mb-1 font-medium">
-                                     Description
-                                 </label>
-                                 <textarea
-                                     value={description}
-                                     placeholder="write a description"
-                                     className="border rounded-md p-2 w-full"
-                                     onChange={(e) =>
-                                         setDescription(e.target.value)
-                                     }
-                                 />
-                             </div>
-                             <div className="mb-6">
-                                 <label className="block mb-2 font-medium">
-                                     Price
-                                 </label>
+                        </div>
+                        <div className="mb-3">
+                            <label className="block mb-1 font-medium pb-2">
+                                Upload Photo
+                            </label>
+                            <label className="border border-gray-300 rounded-md p-2 w-full text-center cursor-pointer hover:bg-gray-100">
+                                {photo ? photo.name : "Upload Photo"}
                                 <input
-                                    type="number"
-                                    value={price}
-                                    placeholder="write a Price"
-                                    className="w-full py-2 px-4 rounded-md border border-gray-300"
-                                    onChange={(e) => setPrice(e.target.value)}
-                                />
-                            </div>
-                            <div className="mb-6">
-                                <label className="block mb-2 font-medium">
-                                    Quantity
-                                </label>
-                                <input
-                                    type="number"
-                                    value={quantity}
-                                    placeholder="write a quantity"
-                                    className="w-full py-2 px-4 rounded-md border border-gray-300"
+                                    type="file"
+                                    name="photo"
+                                    accept="image/*"
                                     onChange={(e) =>
-                                        setQuantity(e.target.value)
+                                        setPhoto(e.target.files[0])
+                                    }
+                                    className="hidden"
+                                />
+                            </label>
+                        </div>
+                        <div className="mb-3">
+                            {photo ? (
+                                <div className="text-center">
+                                    <img
+                                        src={URL.createObjectURL(photo)}
+                                        alt="product_photo"
+                                        height="200px"
+                                        className="block mx-auto"
+                                    />
+                                </div>
+                            ) : (
+                                <div className="text-center">
+                                    <img
+                                        src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${id}`}
+                                        alt="product_photo"
+                                        height="200px"
+                                        className="block mx-auto"
+                                    />
+                                </div>
+                            )}
+                        </div>
+                        <div className="mb-3">
+                            <label className="block mb-1 font-medium">
+                                Name
+                            </label>
+                            <input
+                                type="text"
+                                value={name}
+                                placeholder="write a name"
+                                className="border rounded-md p-2 w-full"
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label className="block mb-1 font-medium">
+                                Description
+                            </label>
+                            <textarea
+                                value={description}
+                                placeholder="write a description"
+                                className="border rounded-md p-2 w-full"
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
+                        <div className="mb-6">
+                            <label className="block mb-2 font-medium">
+                                Price
+                            </label>
+                            <input
+                                type="number"
+                                value={price}
+                                placeholder="write a Price"
+                                className="w-full py-2 px-4 rounded-md border border-gray-300"
+                                onChange={(e) => setPrice(e.target.value)}
+                            />
+                        </div>
+                        <div className="mb-6">
+                            <label className="block mb-2 font-medium">
+                                Quantity
+                            </label>
+                            <input
+                                type="number"
+                                value={quantity}
+                                placeholder="write a quantity"
+                                className="w-full py-2 px-4 rounded-md border border-gray-300"
+                                onChange={(e) => setQuantity(e.target.value)}
+                            />
+                            <div className="mb-6 pb-2">
+                                <label className="block mb-1 font-medium">
+                                    Shipping
+                                </label>
+                                <Select
+                                    bordered={false}
+                                    placeholder="Select Shipping"
+                                    size="large"
+                                    isSearchable
+                                    className="w-full"
+                                    options={[
+                                        { value: "0", label: "No" },
+                                        { value: "1", label: "Yes" },
+                                    ]}
+                                    onChange={(selectedOption) => {
+                                        setShipping(selectedOption.value);
+                                    }}
+                                    value={
+                                        shipping
+                                            ? { value: "1", label: "Yes" }
+                                            : { value: "0", label: "No" }
                                     }
                                 />
-                                <div className="mb-6 pb-2">
-                                    <label className="block mb-1 font-medium">
-                                        Shipping
-                                    </label>
-                                    <Select
-                                        bordered={false}
-                                        placeholder="Select Shipping"
-                                        size="large"
-                                        isSearchable
-                                        className="w-full"
-                                        options={[
-                                            { value: "0", label: "No" },
-                                            { value: "1", label: "Yes" },
-                                        ]}
-                                        onChange={(selectedOption) => {
-                                            setShipping(selectedOption.value);
-                                        }}
-                                        value={shipping ? { value: "1", label: "Yes" } : { value: "0", label: "No" }}                                    />
-                                </div>
+                            </div>
                             <div className="mb-3">
                                 <button
                                     onClick={handleUpdate}
@@ -272,4 +278,3 @@ const UpdateProduct = () => {
 };
 
 export default UpdateProduct;
-

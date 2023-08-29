@@ -1,14 +1,10 @@
-// import { Select } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Select from "react-select";
-
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Select from "react-select";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import Layout from "../../components/Layout/Layout";
-
-
 
 const CreateProduct = () => {
     const navigate = useNavigate();
@@ -49,7 +45,7 @@ const CreateProduct = () => {
             productData.append("quantity", quantity);
             productData.append("photo", photo);
             productData.append("category", category);
-            const { data } = axios.post(
+            const { data } = await axios.post(
                 `${process.env.REACT_APP_API}/api/v1/product/create-product`,
                 productData
             );
@@ -61,7 +57,7 @@ const CreateProduct = () => {
             }
         } catch (error) {
             console.log(error);
-            toast.error("something went wrong");
+            toast.error("Something went wrong");
         }
     };
 
@@ -128,7 +124,7 @@ const CreateProduct = () => {
                                 <input
                                     type="text"
                                     value={name}
-                                    placeholder="write a name"
+                                    placeholder="Write a name"
                                     className="border rounded-md p-2 w-full"
                                     onChange={(e) => setName(e.target.value)}
                                 />
@@ -139,7 +135,7 @@ const CreateProduct = () => {
                                 </label>
                                 <textarea
                                     value={description}
-                                    placeholder="write a description"
+                                    placeholder="Write a description"
                                     className="border rounded-md p-2 w-full"
                                     onChange={(e) =>
                                         setDescription(e.target.value)
@@ -153,7 +149,7 @@ const CreateProduct = () => {
                                 <input
                                     type="number"
                                     value={price}
-                                    placeholder="write a Price"
+                                    placeholder="Write a Price"
                                     className="w-full py-2 px-4 rounded-md border border-gray-300"
                                     onChange={(e) => setPrice(e.target.value)}
                                 />
@@ -165,39 +161,37 @@ const CreateProduct = () => {
                                 <input
                                     type="number"
                                     value={quantity}
-                                    placeholder="write a quantity"
+                                    placeholder="Write a quantity"
                                     className="w-full py-2 px-4 rounded-md border border-gray-300"
                                     onChange={(e) =>
                                         setQuantity(e.target.value)
                                     }
                                 />
-                                <div className="mb-6 pb-2">
-                                    <label className="block mb-1 font-medium">
-                                        Shipping
-                                    </label>
-                                    <Select
-                                        bordered={false}
-                                        placeholder="Select Shipping"
-                                        size="large"
-                                        isSearchable
-                                        className="w-full"
-                                        options={[
-                                            { value: "0", label: "No" },
-                                            { value: "1", label: "Yes" },
-                                        ]}
-                                        onChange={(selectedOption) => {
-                                            setShipping(selectedOption.value);
-                                        }}
-                                    />
-                                </div>
-                                <div className="mb-3">
-                                    <button
-                                        onClick={handleCreate}
-                                        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                                    >
-                                        CREATE PRODUCT
-                                    </button>
-                                </div>
+                            </div>
+                            <div className="mb-6 pb-2">
+                                <label className="block mb-1 font-medium">
+                                    Shipping
+                                </label>
+                                <Select
+                                    placeholder="Select Shipping"
+                                    isSearchable
+                                    className="w-full"
+                                    options={[
+                                        { value: "0", label: "No" },
+                                        { value: "1", label: "Yes" },
+                                    ]}
+                                    onChange={(selectedOption) => {
+                                        setShipping(selectedOption.value);
+                                    }}
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <button
+                                    onClick={handleCreate}
+                                    className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                                >
+                                    CREATE PRODUCT
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -206,4 +200,5 @@ const CreateProduct = () => {
         </Layout>
     );
 };
+
 export default CreateProduct;

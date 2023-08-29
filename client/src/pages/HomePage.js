@@ -1,9 +1,8 @@
 import { Checkbox, Radio } from "antd";
-import { useNavigate } from "react-router-dom";
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import { Prices } from "../components/Prices";
 import { useCart } from "../context/cart";
@@ -113,12 +112,12 @@ const HomePage = () => {
 
     return (
         <Layout>
-            <div className="flex mt-3">
-                <div className="w-1/4">
-                    <h6 className="text-left mb-2 font-semibold">
+            <div className="flex mt-0">
+                <div className="w-1/4 bg-gray-400 p-4">
+                    <h6 className="text-left mb-2 font-semibold text-gray-800 mx-6">
                         Filter By Category
                     </h6>
-                    <div className="flex flex-col space-y-1">
+                    <div className="flex flex-col space-y-1 mx-6">
                         {categories?.map((c) => (
                             <Checkbox
                                 key={c._id}
@@ -130,8 +129,8 @@ const HomePage = () => {
                             </Checkbox>
                         ))}
                     </div>
-                    <div className="mt-3">
-                        <h6 className="text-left mb-2 font-semibold">
+                    <div className="mt-4 mx-6">
+                        <h6 className="text-left mb-2 font-semibold text-gray-800">
                             Filter By Price
                         </h6>
                         <div className="flex flex-col space-y-1">
@@ -146,27 +145,25 @@ const HomePage = () => {
                             </Radio.Group>
                         </div>
                     </div>
-                    <div className="flex flex-col space-y-2">
+                    <div className="flex flex-col mt-6 space-y-2">
                         <button
-                            className="mt-2 bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-2 w-[38%] rounded-none focus:outline-none focus:ring focus:ring-red-300"
+                            className="bg-gray-900 hover:bg-gray-600 text-white font-semibold py-2 px-4 md:px-6 rounded focus:outline-none focus:ring focus:ring-red-300 w-full md:w-[50%] xl:w-[50%]"
                             onClick={() => window.location.reload()}
+                            style={{ whiteSpace: "nowrap" }}
                         >
-                            RESET FILTERS
+                            RESET
                         </button>
                     </div>
                 </div>
-                {/* <div className="w-1/4">
-                   
-                </div>  */}
-                <div className="w-3/4">
-                    <h4 className=" text-center text-4xl mr-15 text font-bold ">
+                <div className="w-3/4 bg-slate-500 p-4">
+                    <h4 className="text-center text-4xl mb-6 font-bold text-gray-800">
                         All Products
                     </h4>
-                    <div className="flex flex-wrap">
+                    <div className="flex flex-wrap shadow-md">
                         {products?.map((p) => (
                             <div
                                 key={p._id}
-                                className="card m-2"
+                                className="card m-2 bg-white shadow-md"
                                 style={{ width: "18rem" }}
                             >
                                 <img
@@ -180,11 +177,10 @@ const HomePage = () => {
                                         {p.description.substring(0, 30)}
                                     </p>
                                     <p className="card-text font-bold">
-                                        {" "}
                                         $ {p.price}
                                     </p>
                                     <button
-                                        className="btn btn-primary"
+                                        className="btn btn-primary bg-gray-900 hover:bg-slate-700"
                                         onClick={() =>
                                             navigate(`/product/${p.slug}`)
                                         }
@@ -192,14 +188,15 @@ const HomePage = () => {
                                         More Details
                                     </button>
                                     <button
-                                         onClick={() => {
+                                        className="btn btn-success bg-gray-400 hover:bg-gray-300"
+                                        onClick={() => {
                                             setCart([...cart, p]);
                                             localStorage.setItem(
-                                              "cart",
-                                              JSON.stringify([...cart, p])
+                                                "cart",
+                                                JSON.stringify([...cart, p])
                                             );
                                             toast.success("Item Added to cart");
-                                          }}
+                                        }}
                                     >
                                         Add to Cart
                                     </button>
@@ -210,7 +207,7 @@ const HomePage = () => {
                     <div className="m-2 p-3">
                         {products && products.length < total && (
                             <button
-                                className="btn btn-warning ml-5"
+                                className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-yellow-300"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setPage(page + 1);
