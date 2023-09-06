@@ -7,7 +7,7 @@ const Dashboard = () => {
   const [auth] = useAuth();
 
   return (
-    <Layout title={"Dashboard - Ecommerce App"}>
+    <Layout>
       <div className="container mx-auto p-4">
         <div className="flex flex-wrap">
           <div className="w-full md:w-1/4 px-4">

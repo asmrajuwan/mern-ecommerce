@@ -25,7 +25,7 @@ const Orders = () => {
     }, [auth?.token]);
 
     return (
-        <Layout title={"Your Orders"}>
+        <Layout >
             <div className="container-flui p-3 m-3">
                 <div className="flex">
                     <div className="w-1/4">

@@ -47,7 +47,7 @@ const AdminOrders = () => {
   };
 
   return (
-    <Layout title={"All Orders Data"}>
+    <Layout >
       <div className="flex flex-row">
         <div className="w-1/4">
           <AdminMenu />
