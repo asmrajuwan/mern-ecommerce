@@ -41,7 +41,7 @@ const CategoryProduct = () => {
                             <p className="text-lg font-bold mt-2">${p.price}</p>
                             <div className="flex justify-between mt-4">
                                 <button
-                                    className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700"
+                                    className=" bg-gray-900 text-white px-4 py-2 rounded-md text-sm hover:bg-slate-700"
                                     onClick={() => navigate(`/product/${p.slug}`)}
                                 >
                                     More Details

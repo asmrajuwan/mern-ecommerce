@@ -12,13 +12,7 @@ const AboutUs = () => {
           </p>
         </div>
         <div className="flex flex-col md:flex-row md:space-x-6">
-          <div className="md:w-1/2">
-            <img
-              src="/images/about.jpg"
-              alt="About Us"
-              className="w-full rounded-lg"
-            />
-          </div>
+        
           <div className="md:w-1/2">
             <div className="bg-gray-100 p-6 rounded-lg">
               <h2 className="text-xl font-semibold mb-4">Our Story</h2>

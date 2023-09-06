@@ -3,8 +3,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+
 import Layout from "../components/Layout/Layout";
 import { Prices } from "../components/Prices";
+import Slider from "../components/Slider";
 import { useCart } from "../context/cart";
 
 const HomePage = () => {
@@ -112,110 +114,130 @@ const HomePage = () => {
 
     return (
         <Layout>
-            <div className="flex mt-0">
-                <div className="w-1/4 bg-gray-400 p-4">
-                    <h6 className="text-left mb-2 font-semibold text-gray-800 mx-6">
-                        Filter By Category
-                    </h6>
-                    <div className="flex flex-col space-y-1 mx-6">
-                        {categories?.map((c) => (
-                            <Checkbox
-                                key={c._id}
-                                onChange={(e) =>
-                                    handleFilter(e.target.checked, c._id)
-                                }
+            <Slider />
+
+            <div className="container mx-auto mb-5 p-4 lg:p-8">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                    <div className="col-span-1 lg:col-span-1 bg-gray-100 p-4 rounded-lg shadow-md">
+                        <h2 className="text-lg font-semibold text-gray-800 mb-4">
+                            Filter By Category
+                        </h2>
+                        <div className="space-y-2">
+                            {categories?.map((c) => (
+                                <Checkbox
+                                    key={c._id}
+                                    onChange={(e) =>
+                                        handleFilter(e.target.checked, c._id)
+                                    }
+                                >
+                                    {c.name}
+                                </Checkbox>
+                            ))}
+                        </div>
+                        <div className="mt-6">
+                            <h2 className="text-lg font-semibold text-gray-800 mb-4">
+                                Filter By Price
+                            </h2>
+                            <div className="space-y-2">
+                                <Radio.Group
+                                    onChange={(e) => setRadio(e.target.value)}
+                                >
+                                    {Prices.map((p) => (
+                                        <div key={p._id}>
+                                            <Radio value={p.array}>
+                                                {p.name}
+                                            </Radio>
+                                        </div>
+                                    ))}
+                                </Radio.Group>
+                            </div>
+                        </div>
+                        <div className="mt-6">
+                            <button
+                                className="bg-gray-900 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded w-full focus:outline-none"
+                                onClick={() => window.location.reload()}
                             >
-                                {c.name}
-                            </Checkbox>
-                        ))}
-                    </div>
-                    <div className="mt-4 mx-6">
-                        <h6 className="text-left mb-2 font-semibold text-gray-800">
-                            Filter By Price
-                        </h6>
-                        <div className="flex flex-col space-y-1">
-                            <Radio.Group
-                                onChange={(e) => setRadio(e.target.value)}
-                            >
-                                {Prices.map((p) => (
-                                    <div key={p._id}>
-                                        <Radio value={p.array}>{p.name}</Radio>
-                                    </div>
-                                ))}
-                            </Radio.Group>
+                                RESET
+                            </button>
                         </div>
                     </div>
-                    <div className="flex flex-col mt-6 space-y-2">
-                        <button
-                            className="bg-gray-900 hover:bg-gray-600 text-white font-semibold py-2 px-4 md:px-6 rounded focus:outline-none focus:ring focus:ring-red-300 w-full md:w-[50%] xl:w-[50%]"
-                            onClick={() => window.location.reload()}
-                            style={{ whiteSpace: "nowrap" }}
-                        >
-                            RESET
-                        </button>
-                    </div>
-                </div>
-                <div className="w-3/4 bg-slate-500 p-4">
-                    <h4 className="text-center text-4xl mb-6 font-bold text-gray-800">
-                        All Products
-                    </h4>
-                    <div className="flex flex-wrap shadow-md">
-                        {products?.map((p) => (
-                            <div
-                                key={p._id}
-                                className="card m-2 bg-white shadow-md"
-                                style={{ width: "18rem" }}
-                            >
-                                <img
-                                    src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
-                                    className="card-img-top"
-                                    alt={p.name}
-                                />
-                                <div className="card-body">
-                                    <h5 className="card-title">{p.name}</h5>
-                                    <p className="card-text">
-                                        {p.description.substring(0, 30)}
-                                    </p>
-                                    <p className="card-text font-bold">
-                                        $ {p.price}
-                                    </p>
-                                    <button
-                                        className="btn btn-primary bg-gray-900 hover:bg-slate-700"
-                                        onClick={() =>
-                                            navigate(`/product/${p.slug}`)
-                                        }
-                                    >
-                                        More Details
-                                    </button>
-                                    <button
-                                        className="btn btn-success bg-gray-400 hover:bg-gray-300"
-                                        onClick={() => {
-                                            setCart([...cart, p]);
-                                            localStorage.setItem(
-                                                "cart",
-                                                JSON.stringify([...cart, p])
-                                            );
-                                            toast.success("Item Added to cart");
-                                        }}
-                                    >
-                                        Add to Cart
-                                    </button>
+
+                    <div className="col-span-1 lg:col-span-3">
+                        <h1 className="text-4xl font-bold text-gray-800 mb-6">
+                            ALL PRODUCTS
+                        </h1>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {products?.map((p) => (
+                                <div
+                                    key={p._id}
+                                    className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+                                >
+                                    <img
+                                        src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
+                                        alt={p.name}
+                                        className="w-full h-48 object-cover object-center"
+                                    />
+                                    <div className="p-4">
+                                        <h5 className="text-lg font-semibold text-gray-800">
+                                            {p.name}
+                                        </h5>
+                                        <p className="text-gray-600 text-sm mt-2">
+                                            {p.description.substring(0, 100)}
+                                            ...
+                                        </p>
+                                        <div className="mt-4 flex flex-col">
+                                            <p className="text-gray-800 font-semibold">
+                                                $ {p.price}
+                                            </p>
+                                            <div className="mt-2">
+                                                <button
+                                                    className="text-white bg-gray-900 hover:bg-gray-700 px-3 py-1 rounded-full mr-2"
+                                                    onClick={() =>
+                                                        navigate(
+                                                            `/product/${p.slug}`
+                                                        )
+                                                    }
+                                                >
+                                                    More Details
+                                                </button>
+                                                <button
+                                                    className="text-gray-800 bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded-full"
+                                                    onClick={() => {
+                                                        setCart([...cart, p]);
+                                                        localStorage.setItem(
+                                                            "cart",
+                                                            JSON.stringify([
+                                                                ...cart,
+                                                                p,
+                                                            ])
+                                                        );
+                                                        toast.success(
+                                                            "Item Added to Cart"
+                                                        );
+                                                    }}
+                                                >
+                                                    Add to Cart
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="m-2 p-3">
-                        {products && products.length < total && (
-                            <button
-                                className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-yellow-300"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setPage(page + 1);
-                                }}
-                            >
-                                {loading ? "Loading..." : "Load More"}
-                            </button>
-                        )}
+                            ))}
+                        </div>
+                        <div className="m-4">
+                            {products && products.length < total && (
+                                <button
+                                    className="text-white bg-cyan-900 hover:bg-cyan-800 px-4 py-2 rounded-full focus:outline-none focus:ring focus:ring-cyan-500"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setPage(page + 1);
+                                    }}
+                                >
+                                    {loading ? "Loading..." : "Load More"}
+                                </button>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

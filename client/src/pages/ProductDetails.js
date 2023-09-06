@@ -117,24 +117,26 @@ const ProductDetails = () => {
                                                     }
                                                 )}
                                             </span>
-                                            <button
-                                                className="bg-slate-600 hover:bg-slate-400 text-white py-2 px-6 rounded-lg w-1/3"
-                                                onClick={() => {
-                                                    setCart([...cart, p]);
-                                                    localStorage.setItem(
-                                                        "cart",
-                                                        JSON.stringify([
-                                                            ...cart,
-                                                            p,
-                                                        ])
-                                                    );
-                                                    toast.success(
-                                                        "Item Added to Cart"
-                                                    );
-                                                }}
-                                            >
-                                                Add to Cart
-                                            </button>
+                                            <div className="flex justify-center">
+                                                <button
+                                                    className="bg-slate-600 hover:bg-slate-400 text-white py-2 px-4 rounded-lg"
+                                                    onClick={() => {
+                                                        setCart([...cart, p]);
+                                                        localStorage.setItem(
+                                                            "cart",
+                                                            JSON.stringify([
+                                                                ...cart,
+                                                                p,
+                                                            ])
+                                                        );
+                                                        toast.success(
+                                                            "Item Added to Cart"
+                                                        );
+                                                    }}
+                                                >
+                                                    Add to Cart
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

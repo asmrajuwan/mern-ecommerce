@@ -18,7 +18,7 @@ const Navbar = () => {
             token: "",
         });
         localStorage.removeItem("auth");
-        toast.success("logged out successfully");
+        toast.success("Logged out successfully");
     };
 
     const [isOpen, setIsOpen] = useState(false);
@@ -28,15 +28,15 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-gray-800">
-            <div className="container mx-auto py-4 px-4 flex justify-between items-center">
+        <nav className="bg-gray-800 sm:py-4 md:py-6 lg:py-8">
+            <div className="container mx-auto px-4 flex justify-between items-center">
                 <div className="flex items-center">
-                    <NavLink to="/" className="text-white text-2xl font-bold">
-                        <span className="text-yellow-500">Bazar</span> Shodai
+                    <NavLink to="/" className="text-yellow-500 text-3xl font-bold">
+                        <span className="text-white">e</span>Shoes
                     </NavLink>
                 </div>
                 <div className={`md:flex ${isOpen ? "block" : "hidden"}`}>
-                    <ul className="md:flex space-y-2 md:space-y-0 md:space-x-4">
+                    <ul className="md:flex space-y-2 md:space-y-0 md:space-x-4 items-center">
                         <SearchInput />
                         <NavLink
                             to="/"
@@ -64,14 +64,6 @@ const Navbar = () => {
                                 </svg>
                             </button>
                             <ul className="absolute z-10 hidden mt-2 space-y-1 bg-white border border-gray-300 rounded shadow-lg min-w-max group-hover:block">
-                                <li>
-                                    <Link
-                                        to={"/categories"}
-                                        className="block px-4 py-2 hover:bg-gray-100"
-                                    >
-                                        All Categories
-                                    </Link>
-                                </li>
                                 {categories?.map((c) => (
                                     <li key={c._id}>
                                         <Link
@@ -128,7 +120,7 @@ const Navbar = () => {
                                             />
                                         </svg>
                                     </NavLink>
-                                    <ul className=" absolute hidden  mb-3   bg-white border border-gray-300 rounded shadow-lg min-w-max group-hover:block">
+                                    <ul className=" absolute hidden mb-3 bg-white border border-gray-300 rounded shadow-lg min-w-max group-hover:block">
                                         <li>
                                             <NavLink
                                                 to={`/dashboard/${

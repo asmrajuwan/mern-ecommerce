@@ -20,4 +20,3 @@ const SearchProvider = ({ children }) => {
 const useSearch= () => useContext(SearchContext);
 
 export { SearchProvider, useSearch };
-

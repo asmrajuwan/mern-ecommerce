@@ -12,14 +12,7 @@ const Contact = () => {
           </p>
         </div>
         <div className="flex flex-col md:flex-row md:space-x-6">
-          <div className="md:w-1/2">
-            {/* Replace this iframe with your Google Maps embed */}
-            <iframe
-              title="Google Map"
-              src={`https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=LOCATION`}
-              className="w-full h-64 rounded-lg"
-            ></iframe>
-          </div>
+          
           <div className="md:w-1/2">
             <div className="bg-gray-100 p-6 rounded-lg">
               <h2 className="text-xl font-semibold mb-4">Get in Touch</h2>
@@ -27,7 +20,7 @@ const Contact = () => {
                 If you have any questions or inquiries, please fill out the
                 form below or contact us using the information provided.
               </p>
-              <form>
+              <form className=' justify-center'>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-semibold mb-1">
                   Name
@@ -60,7 +53,7 @@ const Contact = () => {
               </div>
               <button
                 type="submit"
-                className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700"
+                className="bg-gray-900 text-white px-4 py-2 rounded-md text-sm hover:bg-gray-700"
               >
                 Submit
               </button>

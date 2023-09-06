@@ -1,8 +1,7 @@
 import axios from "axios";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 
-const provider = new GoogleAuthProvider();
+
 
 export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
@@ -11,10 +10,7 @@ const AuthProvider = ({ children }) => {
     token: "",
   });
 
-  const googleLogin = ()=>{
-   
-    return signInWithPopup(auth, provider )
-}
+
 
   //default axios
   axios.defaults.headers.common["Authorization"] = auth?.token

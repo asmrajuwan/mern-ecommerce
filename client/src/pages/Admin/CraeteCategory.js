@@ -97,7 +97,7 @@ const CreateCategory = () => {
                         <AdminMenu />
                     </div>
                     <div className="w-3/4">
-                        <h3 className="text-2xl font-bold">Manage Category</h3>
+                        <h3 className="text-2xl font-bold ml-2"> Manage Category</h3>
                         <div className="p-3 w-1/2">
                             <CategoryForm
                                 handleSubmit={handleSubmit}
@@ -120,7 +120,7 @@ const CreateCategory = () => {
                                             <td>
                                                 <div className="space-x-2">
                                                     <button
-                                                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                                                        className="bg-black hover:bg-gray-900 text-white font-bold py-2 px-4 rounded"
                                                         onClick={() => { setVisible(true); setUpdatedName(c.name); setSelected(c) }}>
                                                         Edit
                                                     </button>
