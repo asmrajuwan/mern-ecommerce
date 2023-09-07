@@ -63,12 +63,12 @@ const Navbar = () => {
                                     ></path>
                                 </svg>
                             </button>
-                            <ul className="absolute z-10 hidden mt-2 space-y-1 bg-white border border-gray-300 rounded shadow-lg min-w-max group-hover:block">
+                            <ul className="absolute z-10 hidden mt-0 space-y-1 bg-white border border-gray-300 rounded shadow-lg min-w-max group-hover:block">
                                 {categories?.map((c) => (
                                     <li key={c._id}>
                                         <Link
                                             to={`/category/${c.slug}`}
-                                            className="block px-4 py-2 hover:bg-gray-100"
+                                            className="block px-4 py-2  hover:bg-gray-200"
                                         >
                                             {c.name}
                                         </Link>
@@ -100,7 +100,7 @@ const Navbar = () => {
                             <>
                                 <li className="relative group mt-2 top-0">
                                     <NavLink
-                                        className="flex items-center text-base mb-2  text-white hover:text-gray-300 focus:outline-none"
+                                        className="flex items-center text-base mt-0  text-white hover:text-gray-300 focus:outline-none"
                                         role="button"
                                         onClick={() => {}}
                                     >
@@ -120,7 +120,8 @@ const Navbar = () => {
                                             />
                                         </svg>
                                     </NavLink>
-                                    <ul className=" absolute hidden mb-3 bg-white border border-gray-300 rounded shadow-lg min-w-max group-hover:block">
+                                    <ul className=" absolute z-10 hidden mt-0 space-y-1 bg-white border border-gray-300 rounded shadow-lg min-w-max group-hover:block">
+                                   
                                         <li>
                                             <NavLink
                                                 to={`/dashboard/${
@@ -137,7 +138,7 @@ const Navbar = () => {
                                             <NavLink
                                                 onClick={handleLogout}
                                                 to="/login"
-                                                className="block px-4 py-2 text-sm text-gray-700 hover:text-gray-300 hover:bg-gray-100"
+                                                className="block px-4 py-2  hover:bg-gray-200"
                                             >
                                                 Logout
                                             </NavLink>

@@ -115,15 +115,14 @@ const HomePage = () => {
 
     return (
         <Layout>
+            
             <Slider />
 
             <div className="container mx-auto mb-5 p-4 lg:p-8">
+            
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                     <div className="col-span-1 lg:col-span-1 bg-gray-100 p-4 rounded-lg shadow-md">
-                    {/* <Typed
-                    strings={['Here you can find anything']}
-                    typeSpeed={40}
-                /> */}
+                   
                         <h2 className="text-lg font-semibold text-gray-800 mb-4">
                             Filter By Category
                         </h2>

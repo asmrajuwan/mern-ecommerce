@@ -8,11 +8,11 @@ const AdminDashboard = () => {
   return (
     <Layout>
       <div className="container mx-auto mt-6 p-4">
-        <div className="flex">
-          <div className="w-1/4">
+        <div className="flex flex-col md:flex-row">
+          <div className="md:w-1/4">
             <AdminMenu />
           </div>
-          <div className="w-3/4 pl-4">
+          <div className="md:w-3/4 md:pl-4 mt-4 md:mt-0">
             <div className="bg-slate-100 shadow-md rounded-lg p-6">
               <h2 className="text-2xl font-semibold mb-4">Admin Details</h2>
               <div className="space-y-4">
@@ -41,5 +41,3 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
-
-
