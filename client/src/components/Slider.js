@@ -13,7 +13,7 @@ import 'swiper/css/pagination';
 
 
 // import required modules
-import { Autoplay, Pagination } from 'swiper/modules';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 
 export default function App() {
   return (
@@ -29,7 +29,7 @@ export default function App() {
           clickable: true,
         }}
         navigation={true}
-        modules={[Autoplay, Pagination]}
+        modules={[Autoplay, Pagination,Navigation]}
         className="mySwiper"
       >
         <SwiperSlide><img className="object-cover w-full"

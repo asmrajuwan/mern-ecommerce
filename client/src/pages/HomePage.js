@@ -2,6 +2,7 @@ import { Checkbox, Radio } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+
 import { useNavigate } from "react-router-dom";
 
 import Layout from "../components/Layout/Layout";
@@ -119,19 +120,27 @@ const HomePage = () => {
             <div className="container mx-auto mb-5 p-4 lg:p-8">
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                     <div className="col-span-1 lg:col-span-1 bg-gray-100 p-4 rounded-lg shadow-md">
+                    {/* <Typed
+                    strings={['Here you can find anything']}
+                    typeSpeed={40}
+                /> */}
                         <h2 className="text-lg font-semibold text-gray-800 mb-4">
                             Filter By Category
                         </h2>
                         <div className="space-y-2">
                             {categories?.map((c) => (
-                                <Checkbox
-                                    key={c._id}
-                                    onChange={(e) =>
-                                        handleFilter(e.target.checked, c._id)
-                                    }
-                                >
-                                    {c.name}
-                                </Checkbox>
+                                <div key={c._id}>
+                                    <Checkbox
+                                        onChange={(e) =>
+                                            handleFilter(
+                                                e.target.checked,
+                                                c._id
+                                            )
+                                        }
+                                    >
+                                        {c.name}
+                                    </Checkbox>
+                                </div>
                             ))}
                         </div>
                         <div className="mt-6">
@@ -183,7 +192,7 @@ const HomePage = () => {
                                             {p.name}
                                         </h5>
                                         <p className="text-gray-600 text-sm mt-2">
-                                            {p.description.substring(0, 100)}
+                                            {p.description.substring(0, 100)}{" "}
                                             ...
                                         </p>
                                         <div className="mt-4 flex flex-col">

@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout/Layout';
+import aboutImage from '../images/about.jpg'; // Replace with the actual path to your image
 
 const AboutUs = () => {
   return (
@@ -12,7 +13,6 @@ const AboutUs = () => {
           </p>
         </div>
         <div className="flex flex-col md:flex-row md:space-x-6">
-        
           <div className="md:w-1/2">
             <div className="bg-gray-100 p-6 rounded-lg">
               <h2 className="text-xl font-semibold mb-4">Our Story</h2>
@@ -25,6 +25,14 @@ const AboutUs = () => {
                 ullamcorper purus nec mauris dictum, non tempus justo cursus.
               </p>
             </div>
+          </div>
+          <div className="md:w-1/2">
+            {/* Display the image here */}
+            <img
+              src={aboutImage} // Use the imported image
+              alt="About Us"
+              className="rounded-lg"
+            />
           </div>
         </div>
       </div>
