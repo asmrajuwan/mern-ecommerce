@@ -34,8 +34,8 @@ const Products = () => {
           <h1 className="text-center text-2xl font-bold mb-4">All Products List</h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {products?.map((p) => (
-              <div key={p._id} className="bg-white rounded-lg shadow-md overflow-hidden">
-                <Link to={`/dashboard/admin/product/${p.slug}`} className="block">
+              <div  className="bg-white rounded-lg shadow-md overflow-hidden">
+                <Link key={p._id} to={`/dashboard/admin/product/${p.slug}`} className="block">
                   <img
                     src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
                     className="w-full h-48 object-cover object-center"

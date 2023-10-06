@@ -104,7 +104,7 @@ const Login = () => {
             New to \E Shoes? Please{" "}
             <Link
               to="/register"
-              className="text-slate-900 hover text-xl font-semibold hover:text-slate-700"
+              className="text-slate-900 hover:text-xl font-semibold hover:text-slate-700"
             >
               Register
             </Link>

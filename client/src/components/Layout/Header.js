@@ -31,21 +31,27 @@ const Navbar = () => {
         <nav className="bg-gray-800 sm:py-4 md:py-6 lg:py-8">
             <div className="container mx-auto px-4 flex justify-between items-center">
                 <div className="flex items-center">
-                    <NavLink to="/" className="text-yellow-500 text-3xl font-bold">
+                    <NavLink
+                        to="/"
+                        className="text-yellow-500 text-3xl font-bold"
+                    >
                         <span className="text-white">e</span>Shoes
                     </NavLink>
                 </div>
                 <div className={`md:flex ${isOpen ? "block" : "hidden"}`}>
+                    <SearchInput />
+                </div>
+                <div className={`md:flex ${isOpen ? "block" : "hidden"}`}>
                     <ul className="md:flex space-y-2 md:space-y-0 md:space-x-4 items-center">
-                        <SearchInput />
-                        <NavLink
-                            to="/"
-                            className="text-white hover:text-gray-300"
-                        >
-                            Home
-                        </NavLink>
-
-                        <div className="relative group">
+                        <li>
+                            <NavLink
+                                to="/"
+                                className="text-white hover:text-gray-300"
+                            >
+                                Home
+                            </NavLink>
+                        </li>
+                        <li className="group">
                             <button className="nav-link dropdown-toggle text-white focus:outline-none">
                                 Categories
                                 <svg
@@ -75,7 +81,7 @@ const Navbar = () => {
                                     </li>
                                 ))}
                             </ul>
-                        </div>
+                        </li>
 
                         {!auth.user ? (
                             <>
@@ -121,7 +127,6 @@ const Navbar = () => {
                                         </svg>
                                     </NavLink>
                                     <ul className=" absolute z-10 hidden mt-0 space-y-1 bg-white border border-gray-300 rounded shadow-lg min-w-max group-hover:block">
-                                   
                                         <li>
                                             <NavLink
                                                 to={`/dashboard/${
