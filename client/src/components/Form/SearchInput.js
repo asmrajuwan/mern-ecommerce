@@ -29,7 +29,7 @@ const SearchInput = () => {
     <div className="join">
       <form onSubmit={handleSubmit} className="flex items-center">
         <input
-          className="w-full md:w-64 text-white py-2 px-4 bg-stone-600 border-gray-300 rounded-none focus:outline-none"
+          className="w-full md:w-64 text-white py-2 px-4 bg-stone-600 border-gray-300 rounded focus:outline-none"
           type="search"
           placeholder="Search"
           aria-label="Search"
@@ -40,7 +40,7 @@ const SearchInput = () => {
         />
         <button
           type="submit"
-          className="bg-slate-400 hover:bg-slate-700 text-white py-2 px-4 rounded-none focus:outline-none"
+          className="bg-slate-400 hover:bg-slate-700 text-white py-2 px-4 rounded ml-1 focus:outline-none"
         >
           Search
         </button>

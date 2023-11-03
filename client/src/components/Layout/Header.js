@@ -28,19 +28,17 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-gray-800 sm:py-4 md:py-6 lg:py-8">
+        <nav className="bg-[#013555] sm:py-4 md:py-6 lg:py-8">
             <div className="container mx-auto px-4 flex justify-between items-center">
                 <div className="flex items-center">
                     <NavLink
                         to="/"
-                        className="text-yellow-500 text-3xl font-bold"
+                        className="text-red-900 text-3xl font-bold"
                     >
-                        <span className="text-white">e</span>Shoes
+                        <span className="text-white">Dc</span>99
                     </NavLink>
                 </div>
-                <div className={`md:flex ${isOpen ? "block" : "hidden"}`}>
-                    <SearchInput />
-                </div>
+             
                 <div className={`md:flex ${isOpen ? "block" : "hidden"}`}>
                     <ul className="md:flex space-y-2 md:space-y-0 md:space-x-4 items-center">
                         <li>
@@ -49,6 +47,14 @@ const Navbar = () => {
                                 className="text-white hover:text-gray-300"
                             >
                                 Home
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/inventory"
+                                className="text-white hover:text-gray-300"
+                            >
+                                Inventory
                             </NavLink>
                         </li>
                         <li className="group">
@@ -167,6 +173,9 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                     </ul>
+                </div>
+                <div className={`md:flex ${isOpen ? "block" : "hidden"}`}>
+                    <SearchInput />
                 </div>
                 {!isOpen && (
                     <div className="md:hidden">

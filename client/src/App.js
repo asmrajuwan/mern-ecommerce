@@ -18,6 +18,7 @@ import Categories from "./pages/Categories";
 import CategoryProduct from "./pages/CategoryProduct";
 import Contact from "./pages/Contact";
 import HomePage from "./pages/HomePage";
+import Inventory from "./pages/Inventory";
 import PageNotFound from "./pages/PageNotFound";
 import Policy from "./pages/Policy";
 import ProductDetails from "./pages/ProductDetails";
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/category/:slug" element={<CategoryProduct />} />
                 <Route path="/search" element={<Search />} />
+                <Route path="/inventory" element={<Inventory />} />
                 <Route path="/dashboard" element={<PrivateRoute/>}>
                     <Route path="user" element={<Dashboard/>} />
                     <Route path="user/orders" element={<Orders/>} />
